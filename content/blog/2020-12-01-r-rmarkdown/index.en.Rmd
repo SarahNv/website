@@ -1,0 +1,25 @@
+---
+title: "Hello World"
+author: "Sarah Narvaiz"
+date: "2022-01-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+
+```{r}
+print("Hello World!")
+```
+
+# My Work
+
+Welcome! This first blog post serves as an introduction to myself and my work.Let's start with my likes! I like data. I like statistics. I like coding in R. Most importantly, I like advocating for individuals who identify within an underrepresented group. It has always been my goal to use my skills and expertise in statistics and research methodology to better the lives for underrepresented groups. 
+
+Many individuals may or may not be under the assumption that statistics and data are objective. I used to think data was objective as well until I started to dive into more social justice theoretically underpinnings and studied the application of quantitative critical methods (QuantCrit). Our data is only as objective as the researcher that collects and analyzed it. And as social creatures, we have many hidden biases and subjectivities from our world experience that reflects undertones in the data we collect and analyze. Thus, I think it is imperative for my research to use QuantCrit to understand and become reflexive in the processes I choose to undertake in my research.
+
+I am looking forward to learning more and serving underrepresented groups with my research skills and expertise. 
+
+Thanks for reading! I am looking forward to writing more blogs on different topics!
+
