@@ -26,7 +26,7 @@ role: PhD Student
 social:
 - icon: envelope
   icon_pack: fas
-  link: /#contact
+  link: mailto:snarvaiz@vols.utk.edu
 - display:
     header: true
   icon: twitter
