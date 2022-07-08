@@ -1,6 +1,5 @@
 ---
-bio: My research interests include distributed survey research, psychometrics and QuantCrit theory
-  matter.
+bio: My research interests include survey research, psychometrics and QuantCrit theory.
 education:
   courses:
   - course: PhD in Evaluation, Statistics, and Methodology

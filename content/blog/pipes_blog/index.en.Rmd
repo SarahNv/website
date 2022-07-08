@@ -1,0 +1,18 @@
+---
+title: "Inspiring Future Data Scientists: Data science for PiPES high school students"
+author: "Sarah Narvaiz"
+date: "2022-07-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+During the week of June 13th, I and Dr. Joshua Rosenberg (faculty member) from the University of Tennessee, Knoxville hosted a 4-day data science lab as part of the [PiPES](https://ip-pipes.utk.edu/) summer program for high school students. Over the course of the four day lab, two students from [Sequoyah High School](https://sqhs.monroe.k12.tn.us/) in Madisonville, TN  learned about data science, the application of data science in different fields, and how to conduct data science using the programming language R. Students conducted their own data science research project by developing a research question which could be answered by a publicly available data set then used the coding skills learned in the lab to clean, tidy, and answer their research question. Students presented their research projects to other high school camp students and the PiPES staff. 
+
+When reflecting on their experiences at the end of camp, students noted the data science lab as “fun and surprising” as they “thought it would be boring but wasn’t.” The students really enjoyed the hands-on experience of the lab as they were able to select their own data set and research question. Both Dr. Rosenberg and mysefl are looking forward to inspiring future data scientists! 
+
+Here are pictures from their presentation! 
+![My picture](/media/IMG_6314.jpg)
+![My picture](/media/IMG_6316.jpg)
+
