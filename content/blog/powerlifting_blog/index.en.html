@@ -1,0 +1,30 @@
+---
+title: 'Programming + Powerlifting: Developing a Shiny app for my one and only hobby'
+author: "Sarah Narvaiz"
+date: '2022-07-22'
+---
+
+
+
+<div id="powerlifting-as-a-hobby" class="section level1">
+<h1>Powerlifting as a hobby</h1>
+<p>My one and only hobby outside of my PhD work is powerlifting. Powerlifting has given me so much. The sport alone has encouraged me to take care of my overall physical and mental health (nutrition, exercise, stress management, sleep hygiene, and community). If you know me at all, then you know I strive to do everything I do to the best of my abilities, including powerlifting. Given that it’s my only hobby which enables me to take care of myself, paired with being a very competitive person, I decided to work with a powerlifting coach in October 2021. Since working with <a href="https://www.instagram.com/camdencwilson/?hl=en">Camden</a> I’ve progressed in multiple areas of powerlifting (e.g., strength, technique, and something we call “mentals” (sports mentality)). However, this sport is a marathon, not a sprint; it takes a long time to develop these traits. While it’s a bit difficult to measure progression in technique and “mentals”, we can certainly measure strength progression. This can be done several ways, but the most common is looking to see if your 1 rep max (1RM) has increased in squat, bench, deadlift (SBD). In other words, how much has the maximum amount of weight you can lift for one repetition increased in either SBD. Another way we can examine strength progress, is looking to see if your baseline has increased for a specific set by repetition scheme. For example, Camden has prescribed me a 4x4 bench (doing 4 rounds of bench with 4 reps with 3-5min rest between each round) multiple times since we’ve been working together. We can evaluate if my baseline of 4x4 bench has increased over all the times I was prescribed a 4x4 bench.</p>
+</div>
+<div id="measuring-strength-progress" class="section level1">
+<h1>Measuring strength progress</h1>
+<p>Ok so how can we easily examine progression in a digestible way? I can easily remember my 1RM for three lifts, but I can’t remember personal records (PR) for a set/rep scheme. All set/reps and weights are logged in a Google Sheet (fig 1) shared between myself and Camden. Every 4 weeks Camden adds a new spreadsheet where he programs a new block (aka monthly workout plan) and I record the weight done for each set/rep and the RPE (rate of perceived exertion (a scale of difficulty)). But we have a ton of sheets with different data so it’s not super easy to search and figure out strength progress. Additionally, I also weekly document my training in an online training log on my Instagram account with videos and weight of the set/rep schemes prescribed. But this is also difficult to filter through and find rep or “pocket” PRs.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pressure"></span>
+<img src="block.png" alt="Example Google Sheet" width="100%" />
+<p class="caption">
+Figure 1: Example Google Sheet
+</p>
+</div>
+</div>
+<div id="measuring-strength-progress-via-shiny" class="section level1">
+<h1>Measuring strength progress via <code>Shiny</code></h1>
+<p>To easily evaluate my strength progression, I decided to develop a <code>Shiny</code> app (link <a href="https://narvaiz.shinyapps.io/powerlifting_progress/">here</a>) that displays my SBD progress across time. The user can select the type of lift, sets, and reps, and a line chart will generate showing the weight lifted across time for the set/rep scheme for that specific lift with clickable data points showing the date, weight, and RPE. For example, if I want to evaluate my progression on a 5x3 bench, I can see that the first recorded 5x3 bench was on March 3, 2022 @ 140 RPE 7 and my most recent 5x3 bench was on July 14, 2022 @ 154lb RPE 7. This is a huge increase in strength, especially since they are the same set/rep scheme at the same rated level of difficulty (RPE 7)!</p>
+<iframe src="https://narvaiz.shinyapps.io/powerlifting_progress/?showcase=0" width="100%" height="600px" data-external="1">
+</iframe>
+<p>I shared this app with my powerlifting community on Instagram and received a lot of great feedback! It’s a pretty neat way of easily looking at progress over time which is pretty important for powerlifting athletes, because if an athlete isn’t progressing then something needs to be re-evaluated. Perhaps one day I will develop a powerlifting progress app that everyone in the powerlifting community can use if they want to. But first, I need to make mine more mobile friendly (it’s a bit scrunched in the preview above bc of it)!</p>
+<p>I never thought I would be at the intersection where I could nerd out on data science and powerlifting, but here we are lol. Enjoy :)</p>
+</div>
