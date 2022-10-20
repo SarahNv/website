@@ -1,0 +1,54 @@
+---
+title: '“Wait, I’m a developer?”: Reflections on developing #Rstats functions'
+author: "Sarah Narvaiz"
+date: '2022-10-20'
+tags: [rstats, konfound]
+---
+
+
+
+<p>After logging off a two-hour meeting I immediately paused and thought <em>“wait, I’m a developer?”</em></p>
+<p>The meeting was part of the IES-funded Quantifying the Robustness of Causal Inferences <a href="https://ies.ed.gov/funding/grantsearch/details.asp?ID=5723">project</a> where we discussed the redesign and architecture of the <a href="https://cran.r-project.org/web/packages/konfound/index.html">konfound</a> R package. This (<em>kinda</em>) big task came to light when we decided to visually map out the R functions in the package to understand the structure and how we could add in new functions for newly developed statistical methods. And well, it ended up looking a little interesting (figure 1).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pressure"></span>
+<img src="dev.JPG" alt="Initial Package Architecture (oopsie)" width="70%" />
+<p class="caption">
+Figure 1: Initial Package Architecture (oopsie)
+</p>
+</div>
+<p>We all decided that we wanted to work smarter :bulb:, not harder so we decided to brainstorm ways into which we could better structure the functions within the `konfound’ package in a way we could easily incorporate functions for newly developed statistical methods. In other words, we wanted a stable back-end structure to add new functions until the end of time :grimacing:</p>
+<blockquote>
+<p>“We built this plane while flying it” - J. Rosenberg, 2022 :airplane:</p>
+</blockquote>
+<div id="konfound-the-question" class="section level3">
+<h3><code>Konfound</code> + THE Question</h3>
+<p>As of right now, the three main functions in the <code>konfound</code> package (<code>konfound</code>, <code>pkonfound</code>, <code>mkonfound</code>) mainly support linear models :chart_with_upwards_trend: (some non-linear) for two causal inference sensitivity analysis techniques (omitted variables and replacement of cases). But we have plans for incorporating more techniques that support linear and non-linear models. So the question was <em>“how do we restructure the architecture of the functions to support future development on the back-end and provide the best experience for the user on the front-end?”</em> <strong>Womp womp womp</strong>. Wait, I’m a <em>developer</em>? :scream:</p>
+</div>
+<div id="development-considerations" class="section level3">
+<h3>Development Considerations</h3>
+<p>Here are a <em>few (well, let’s be real, 7)</em> things to consider when answering this question:</p>
+<ol style="list-style-type: decimal">
+<li>The <strong>purpose driving the development</strong> of your main functions will likely dictate the overarching structure of your package. <em>For example</em>, the purpose of the development of the <code>konfound</code> package is to <strong>provide users with an easy use function to conduct causal inference sensitivity analysis</strong>. So it might make sense to set these techniques at the <strong>top</strong> of the hierarchy structure then build down from there.<br />
+<br></li>
+<li><strong>How many arguments is too many arguments?</strong> How many arguments should a user specify in order to run the analysis? How many arguments could a user specify to refine the analysis? Which arguments should be default?<br />
+<br></li>
+<li><strong>How many functions are too many functions?</strong> Should there be a function based on model type (linear or non), technique type, context type (established model, results from already-conducted analysis, meta-analysis) or a combination of these? Here, there can be as few as 3 main functions and as many as:exclamation:24 main functions:exclamation: :flushed: <em>(calculated by using the rule of product for our future development plans)</em>.<br />
+<br></li>
+<li><strong>What should be written in error messages?</strong> Should there be warning messages? If so, what should be included in these messages?<br />
+<br></li>
+<li>Probably the most important consideration, what are the <strong>user’s needs</strong>? How <em>will</em> they use the functions vs. how <em>we think</em> they will use them? How can we anticipate their needs to minimize user error and increase user experience? :sparkles:<strong>(this is the #1 UX principle)</strong>:sparkles:<br />
+<br></li>
+<li>Is there a middle ground between <strong>creating a strong back-end structure and a strong front-end structure</strong>?<br />
+<br></li>
+<li>Will changing the current structure of the functions within the package <strong>confuse or drive away current users</strong> of the package? If we decide to change the structure in a way that is different from the current structure, how can this be executed in a way that is least burdensome for current users? (the dreaded :warning:deprecated:warning: error message) :cold_sweat:<br />
+<br></li>
+</ol>
+</div>
+<div id="final-words-truly-yours-tbd" class="section level3">
+<h3>Final Words: Truly Yours, TBD</h3>
+<p>As of writing this, I don’t have any immediate answers to these questions. I think it depends on the <strong>end goal</strong> of your package and functions. I personally have a preference in how we should proceed in our case of the <code>konfound</code> project, but definitely need some time to throw spaghetti at the wall, so-to-speak.</p>
+<p>But, I wanted to share these thoughts and reflections as someone who unknowingly entered the world of #Rstats development.</p>
+</div>
+<div id="keep-tabs-on-the-project" class="section level3">
+<h3>Keep Tabs on the Project</h3>
+<p>Stay tuned for updates that will be posted on my blog. You can also follow the confound project at <a href="https://www.konfound-it.org/" class="uri">https://www.konfound-it.org/</a></p>
+</div>
