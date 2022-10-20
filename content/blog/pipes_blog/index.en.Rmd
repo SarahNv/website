@@ -1,7 +1,8 @@
 ---
-title: "Inspiring Future Data Scientists: Data science for PiPES high school students"
+title: 'Inspiring Future Data Scientists: Data science for PiPES high school students'
 author: "Sarah Narvaiz"
-date: "2022-07-08"
+date: '2022-07-08'
+tags: [rstats]
 ---
 
 ```{r setup, include=FALSE}

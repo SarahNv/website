@@ -2,6 +2,7 @@
 title: "Hello World"
 author: "Sarah Narvaiz"
 date: "2022-01-22"
+tags: [musings]
 ---
 
 ```{r setup, include=FALSE}

@@ -2,14 +2,14 @@
 title: "Into to R Tutorial"
 author: "Sarah Narvaiz"
 date: "2022-02-01"
-tags: ["R tutorial"]
+tags: [rstats, tutorial]
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-First of all, happy February 1st! `r emo::ji("heart")`
+First of all, happy February 1st! :heart:
 
 The Spring 2022 semester just started and I get to serve as the teaching assistant for our Statistics 3 course. We will be using R and RStudio during this course to teach advanced statistical concepts and modeling. In this class we cover topics such as data cleaning, handling missing data, causal inference, multiple regression, mediation, and moderation. Given that many of the students who take this class have little to no exposure to R, we spend the first two weeks in class reviewing R and how it can be used for data cleaning and basic statistical applications. 
 
