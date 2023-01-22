@@ -42,7 +42,7 @@ superuser: true
 title: Sarah Narvaiz
 ---
 
-Hello, welcome to my website! My name is Sarah and I am a 4th year Ph.D. candidate in the Evaluation, Statistics, and Methodology (ESM) program at the University of Tennessee (UT). My research interests include survey research, psychometrics, QuantCrit methods, and supporting underserved and underrepresented populations through my research. In addition to my studies, I am the Graduate Research Assistant for [Dr. Joshua Rosenberg](https://joshuamrosenberg.com/) working on the IES-funded [project](https://ies.ed.gov/funding/grantsearch/details.asp?ID=5723) (R305D220022): Quantifying the Robustness of Causal Inferences and the Graduate Research Assistant, and the Graduate Research Assistant for [Dr. Louis Rocconi](https://lrocconi.github.io/).
+Hello, welcome to my website! My name is Sarah and I am a 4th year Ph.D. candidate in the Evaluation, Statistics, and Methodology (ESM) program at the University of Tennessee (UT). My research interests include survey research, psychometrics, QuantCrit methods, and supporting underserved and underrepresented populations through my research. In addition to my studies, I am the Graduate Research Assistant for [Dr. Joshua Rosenberg](https://joshuamrosenberg.com/) working on the IES-funded [project](https://ies.ed.gov/funding/grantsearch/details.asp?ID=5723) (R305D220022): Quantifying the Robustness of Causal Inferences and the Graduate Research Assistant.
 
 Feel free to explore my website and don't hesitate to reach out via email, Twitter, or LinkedIn. Thanks for stopping by! :)
 
