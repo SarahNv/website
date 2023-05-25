@@ -1,11 +1,11 @@
 ---
-bio: My research interests include survey research, psychometrics and QuantCrit theory.
+bio: My research interests include survey research, psychometrics, and QuantCrit theory.
 education:
   courses:
-  - course: PhD in Evaluation, Statistics, and Methodology
+  - course: PhD in Educational Psychology and Research
     institution: University of Tennessee- Knoxville
-    year: 2023 (est)
-  - course: MS in Education Psychology- Research and Evaluation
+    year: 2023
+  - course: MS in Educational Psychology- Research and Evaluation
     institution: University of North Texas
     year: 2018
   - course: BA in Political Science
@@ -17,11 +17,11 @@ interests:
 - Survey Methodology
 - Psychometrics
 - QuantCrit
-- Survey Sampling
+- R
 organizations:
 - name: University of Tennessee- Knoxville
   url: https://epc.utk.edu/evaluation-statistics-methodology/
-role: PhD Candidate
+role: Research Scientist
 social:
 - icon: envelope
   icon_pack: fas
@@ -39,10 +39,10 @@ social:
   icon_pack: fab
   link: https://www.linkedin.com/in/sarah-narvaiz-20a45289/
 superuser: true
-title: Sarah Narvaiz
+title: Sarah Narvaiz, PhD
 ---
 
-Hello, welcome to my website! My name is Sarah and I am a 4th year Ph.D. candidate in the Evaluation, Statistics, and Methodology (ESM) program at the University of Tennessee (UT). My research interests include survey research, psychometrics, QuantCrit methods, and supporting underserved and underrepresented populations through my research. In addition to my studies, I am the Graduate Research Assistant for [Dr. Joshua Rosenberg](https://joshuamrosenberg.com/) working on the IES-funded [project](https://ies.ed.gov/funding/grantsearch/details.asp?ID=5723) (R305D220022): Quantifying the Robustness of Causal Inferences and the Graduate Research Assistant.
+Hello, welcome to my website! My name is Sarah and I am a research scientist in the Theory and Practice in Teacher Education (TPTE) department at the University of Tennessee. My current work as a research scientist includes leading the re-design of an R Shiny application which conducts sensitivity analyses for causal inference methods as part of an IES-funded [project](https://ies.ed.gov/funding/grantsearch/details.asp?ID=5723) (R305D220022). Beyond this work, my research interests include survey research, psychometrics, QuantCrit methods, and supporting underserved and underrepresented populations. Other than that, I consider myself an R and Shiny lover.
 
 Feel free to explore my website and don't hesitate to reach out via email, Twitter, or LinkedIn. Thanks for stopping by! :)
 
