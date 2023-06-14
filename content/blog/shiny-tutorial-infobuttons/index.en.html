@@ -1,0 +1,152 @@
+---
+title: 'Shiny Tutorial: Information Buttons'
+author: "Sarah Narvaiz"
+date: '2023-06-13'
+tags: 
+- shiny
+- tutorial
+---
+
+
+
+<p>Hi! Welcome to this brief tutorial on how to incorporate information buttons into your shiny applications :)</p>
+<p>This tutorial was inspired by my current job where I am leading the redevelopment of a Shiny application to conduct sensitivity analyses for causal inference methods. We are almost done with the development of the new and improved app (just need to conduct testing) so I can’t share the beta version with you quite yet, but here is what the OG <a href="https://jmichaelrosenberg.shinyapps.io/konfound-it/">app</a> looks like if you’re curious :)</p>
+<p>Ok, let’s jump into it!</p>
+<div id="basic-example" class="section level2">
+<h2>Basic Example</h2>
+<p>I’ve created a simple example that shows different entree choices for a user to select.</p>
+<pre class="r"><code>library(shiny)
+
+# Define UI for application
+ui &lt;- fluidPage(
+          radioButtons(&quot;entree&quot;, &quot;Select an entree from the choices below&quot;,
+                       choiceNames = list(&quot;Surf + Turf&quot;, &quot;Sushi Assortment&quot;, &quot;Pho&quot;, &quot;Breakfast for dinner&quot;),
+                       choiceValues = list(&quot;surf&quot;, &quot;sushi&quot;, &quot;pho&quot;, &quot;break&quot;))
+)
+
+
+server &lt;- function(input, output) {
+
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)</code></pre>
+<p>Which looks like this…
+<img src="basic-buttons.gif" /><!-- --></p>
+<p>So it’s pretty <strong>basic</strong> tbh. What if the user wanted to know a little bit more about the entree choices before committing? Well we can use information buttons to help!</p>
+</div>
+<div id="same-example-but-less-basic" class="section level2">
+<h2>Same Example but Less Basic</h2>
+<p>We will be using the <code>shinyBS</code> package. Note: The R documentation can be found <a href="https://cran.r-project.org/web/packages/shinyBS/shinyBS.pdf">here</a> and <a href="https://ebailey78.github.io/shinyBS/">here’s</a> the package’s designed website with additional information.</p>
+<pre class="r"><code>library(shiny)
+library(shinyBS)
+
+# Define UI for application
+ui &lt;- fluidPage(
+          radioButtons(&quot;entree&quot;, &quot;Select an entree from the choices below&quot;,
+                       choiceNames = list(
+                         list(&quot;Surf + Turf&quot;,
+                              bsButton(&quot;surf-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;)), 
+                         list(&quot;Sushi Assortment&quot;,
+                              bsButton(&quot;sushi-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;)), 
+                         list(&quot;Pho&quot;,
+                              bsButton(&quot;pho-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;)), 
+                         list(&quot;Breakfast for dinner&quot;,
+                              bsButton(&quot;break-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;))),
+                       choiceValues = list(&quot;surf&quot;, &quot;sushi&quot;, &quot;pho&quot;, &quot;break&quot;)),
+
+)
+
+
+server &lt;- function(input, output) {
+
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)</code></pre>
+<div id="code-walk-through-part-1" class="section level3">
+<h3>Code Walk Through Part 1</h3>
+<p>So are using the <code>bsButton()</code>function to produce the UI (or the visual icon) for the information button. Since we want each radio button (i.e., each entree option) to have it’s own designated information icon, we need to make a list within a list. The parent list element (the primary list container) is the list containing the entree choice names. In this case, <code>choiceNames</code> is the parent list and within that list are four child list elements (one list per entree choice). We structure our code this way in order to attach an information icon button for each of the radio buttons (i.e., each entree option). If we don’t create these child list elements, the <code>radioButton()</code> function will try to read the <code>bsButton()</code> as it’s own function argument and you will receive an error.</p>
+<p>Let’s review the code within the child list ement for the first choice: Surf + Turf. The <code>bsButton</code> requires a few arugments. The first being, an inputID (this is important and we’ll come back to this in a few paragraphs). In this case, we gave the first choice an inputID as <code>surf-info</code>. The next argument is a label. The R documentation says this for the label argument: “The contents of the button or link–usually a text label, but you could also use any other HTML, like an image.” We will leave this blank (i.e., ” “) since we want to generate an icon and not an actual word for the button graphic. The next argument is <code>icon</code> which is optional and only needed if you want to display an icon for this button (which we do!). In this case, I want to use the <code>font-awesome</code> library’s information icon. You will need to install fontawesome before this step :) The fontawesome documentation is <a href="https://github.com/rstudio/fontawesome">here</a> and <a href="https://fontawesome.com/icons?d=gallery&amp;m=free">here</a> is a list of all fontawesome icons :) Next, we want to use the default stype of the icon button, and lastly, we want the icon to be extra small.</p>
+<p>Here’s what is looks like thus far…</p>
+<p><img src="basic-buttons2.gif" /><!-- --></p>
+<p>This is looking better! We have the icons working, but we need to add information to the icons as popovers using BSpopover :)</p>
+<pre class="r"><code>library(shiny)
+library(shinyBS)
+
+# Define UI for application
+ui &lt;- fluidPage(
+          radioButtons(&quot;entree&quot;, &quot;Select an entree from the choices below&quot;,
+                       choiceNames = list(
+                         list(&quot;Surf + Turf&quot;,
+                              bsButton(&quot;surf-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;)), 
+                         list(&quot;Sushi Assortment&quot;,
+                              bsButton(&quot;sushi-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;)), 
+                         list(&quot;Pho&quot;,
+                              bsButton(&quot;pho-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;)), 
+                         list(&quot;Breakfast for dinner&quot;,
+                              bsButton(&quot;break-info&quot;, label = &quot;&quot;, icon = icon(&quot;info&quot;, lib = &quot;font-awesome&quot;), style = &quot;default&quot;, size = &quot;extra-small&quot;))),
+                       choiceValues = list(&quot;surf&quot;, &quot;sushi&quot;, &quot;pho&quot;, &quot;break&quot;)),
+          
+          bsPopover(
+            id = &quot;surf-info&quot;,
+            title = &quot;More information&quot;,
+            content = HTML(paste0(
+              &quot;Ribeye steak, grilled jumbo shrimp, butter roasted potato medley, grilled asparagus.&quot;
+            )),
+            placement = &quot;right&quot;,
+            trigger = &quot;hover&quot;,
+            options = list(container = &quot;body&quot;)
+          ),
+          bsPopover(
+            id = &quot;pho-info&quot;,
+            title = &quot;More information&quot;,
+            content = HTML(paste0(
+              &quot;Rice noodles, braised oxtail, and anise-coriander scented broth.&quot;
+            )),
+            placement = &quot;right&quot;,
+            trigger = &quot;hover&quot;,
+            options = list(container = &quot;body&quot;)
+          ),
+          bsPopover(
+            id = &quot;sushi-info&quot;,
+            title = &quot;More information&quot;,
+            content = HTML(paste0(
+              &quot;20 piece assortment of nigiri and sashimi with tuna, salmon, eel, and yellowtail.&quot;
+            )),
+            placement = &quot;right&quot;,
+            trigger = &quot;hover&quot;,
+            options = list(container = &quot;body&quot;)
+          ),
+          bsPopover(
+            id = &quot;break-info&quot;,
+            title = &quot;More information&quot;,
+            content = HTML(paste0(
+              &quot;Sarahs Saturday special of chocolate Kodiak pancakes, soft scrambled eggs, and an assortment of seasonal fruit.&quot;
+            )),
+            placement = &quot;right&quot;,
+            trigger = &quot;hover&quot;,
+            options = list(container = &quot;body&quot;)
+          )
+          
+)
+
+
+server &lt;- function(input, output) {
+
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)</code></pre>
+</div>
+<div id="code-walk-through-part-2" class="section level3">
+<h3>Code Walk Through Part 2</h3>
+<p>In the first walk through, we discussed how we generated the information buttons, but now we need content/text in the button! That’s where <code>bsPopover()</code> enters the chat. You probably recall us discussing the inputID needed for each button using the <code>bsButton()</code> function. We will need the use the same ID in the <code>bsPopover()</code> function so R can map the content/text to the graphic icon. Next, we need a title to be displayed for each button. In this case I used “More information” but you can always change this or provide an empty string. Next! We need to provice the content/text for each button. You can see I provided a description for each entree in the code above. Side note: it was in this moment I realized I could never have a career as a menu writer LOL. Placement is the next argument for the <code>bsPopover()</code> function, and this tells R where to display the icon that is attached to it’s designated list/word element (e.g., should the icon be placed on the righthand side of the entree radio button or to the left?). Next, it asks how we want the content/text to be triggered to which we said it’s triggered when the user hovers over the icon. The last arugment is completely optional, but we want the content/text to be displayed using a body text style (aka body text).</p>
+<p>Here’s the final product!</p>
+<p><img src="advanced-buttons.gif" /><!-- --></p>
+</div>
+</div>
+<div id="all-done" class="section level2">
+<h2>All done!</h2>
+<p>That’s it! Thanks for reading and I hope you found something of value in this post. I’ll probably plan on making more coding tutorials as they come up in my own work. In terms of blog posts, I do plan on creating a series of my thoughts on proposed Diversity, Equity, and Inclusion practices and equitable data practices that I see/read about in my field (as well as my own honest experiences).</p>
+</div>
