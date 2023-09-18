@@ -21,11 +21,11 @@ interests:
 organizations:
 - name: University of Tennessee- Knoxville
   url: https://epc.utk.edu/evaluation-statistics-methodology/
-role: Research Scientist
+role: Researcher
 social:
 - icon: envelope
   icon_pack: fas
-  link: mailto:snarvaiz@vols.utk.edu
+  link: mailto:snarvaiz@alum.utk.edu
 - display:
     header: true
   icon: twitter
@@ -42,7 +42,7 @@ superuser: true
 title: Sarah Narvaiz, PhD
 ---
 
-Hello, welcome to my website! My name is Sarah and I am a research scientist in the Theory and Practice in Teacher Education (TPTE) department at the University of Tennessee. My current work as a research scientist includes leading the re-design of an R Shiny application which conducts sensitivity analyses for causal inference methods as part of an IES-funded [project](https://ies.ed.gov/funding/grantsearch/details.asp?ID=5723) (R305D220022). Beyond this work, my research interests include survey research, psychometrics, QuantCrit methods, and supporting underserved and underrepresented populations. Other than that, I consider myself an R and Shiny lover.
+Hello, welcome to my website! My name is Sarah and I am an education researcher. My research interests include survey research, psychometrics, QuantCrit methods, and supporting underserved and underrepresented populations. Other than that, I consider myself an R and Shiny lover.
 
 Feel free to explore my website and don't hesitate to reach out via email, Twitter, or LinkedIn. Thanks for stopping by! :)
 
