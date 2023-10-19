@@ -1,0 +1,151 @@
+---
+title: 'Shiny Tutorial: Input Validation + Shiny Testing Part 1'
+author: "Sarah Narvaiz"
+date: "2023-10-19"
+tags:
+- shiny
+- tutorial
+---
+
+
+
+<p>Read time: 5 minutes</p>
+<p>Hi! Welcome to part 1 of this brief tutorial on shiny input validation and shiny app testing :)</p>
+<p>This tutorial was inspired by my previous job where I am led the redevelopment of a Shiny application to conduct sensitivity analyses for causal inference methods. The team is almost finished with development efforts and you can access the beta version <a href="https://konfound-project.shinyapps.io/konfoundit/">here</a> if you’re curious :)</p>
+<p>Ok, let’s jump into it!</p>
+<div id="basic-example" class="section level2">
+<h2>Basic Example</h2>
+<p>To get started, I’ve created a simple example to help with the understanding of when you might want to use input validation and shiny test. To illustrate these uses, I’ve created a basic combinations calculator (with replacement). For example, let’s say we want to calculate the number of possible combinations to unlock my phone given a 6 digit password with 10 possible digits (digits 0 - 9) to which the any of these possible digits can show up more than one time (i.e. combination with replacement) in my 6 digit password (e.g., the number 2 can show up more than one time in my 6-digit password). I’ve provided the code below of the simple combinations calculator app:</p>
+<pre class="r"><code>library(shiny)
+
+# Define UI for application
+ui &lt;- fluidPage(
+
+    # Application title
+    titlePanel(&quot;Combination Calculator Without Replacement&quot;),
+
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+            numericInput(&quot;objects&quot;,
+                        &quot;Number of objects (n)&quot;,
+                        min = 1,
+                        max = 50,
+                        step = 1,
+                        value = 0),
+            numericInput(&quot;sample&quot;,
+                         &quot;Number in sample (r)&quot;,
+                         min = 1,
+                         max = 50,
+                         step = 1,
+                         value = 0),
+            actionButton(&quot;go&quot;, &quot;Calculate&quot;)
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
+          textOutput(&quot;combinations&quot;)
+        )
+    )
+)
+
+# Define server logic to calculate combinations
+server &lt;- function(input, output) {
+  calc &lt;- eventReactive(input$go, {
+    round( #round calculation
+      exp(lfactorial(input$sample + input$objects - 1)) / #(n + r -1)!
+            (exp(lfactorial(input$sample)) * exp(lfactorial(input$objects - 1))), #r!(n-1)!
+      2)
+    
+  })
+  output$combinations &lt;- renderText({
+    paste0(&quot;There are &quot;, calc(), &quot; possible combinations with replacements&quot;)
+  })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)</code></pre>
+<p>Which looks like this…
+<img src="comb-calc.gif" /><!-- --></p>
+<p>So there are 5,005 possible password combinations that can unlock my phone. By the way, this is the formula for combinations with replacements (which is included in the server side of the app:</p>
+<p><img src="formula.png" width="154" /></p>
+<p>Where n &gt;= 0, and r &gt;= 0. If n = r = 0, then CR(n,r) = 1</p>
+<p>Ok this is great, but as of now the app doesn’t follow the rules above:
+<img src="calc-02.gif" /><!-- --></p>
+</div>
+<div id="adding-validation-message" class="section level2">
+<h2>Adding Validation Message</h2>
+<p>Let’s provide the user with informative warning messages using the <code>validate()</code> function and use <code>if</code> <code>else</code> statements to satisfy the n = r = 0, then CR(n,r) = 1 rule.</p>
+<pre class="r"><code>library(shiny)
+
+# Define UI for application
+ui &lt;- fluidPage(
+
+    # Application title
+    titlePanel(&quot;Combination Calculator Without Replacement&quot;),
+
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+            numericInput(&quot;objects&quot;,
+                        &quot;Number of objects (n)&quot;,
+                        min = 1,
+                        max = 50,
+                        step = 1,
+                        value = 0),
+            numericInput(&quot;sample&quot;,
+                         &quot;Number in sample (r)&quot;,
+                         min = 1,
+                         max = 50,
+                         step = 1,
+                         value = 0),
+            actionButton(&quot;go&quot;, &quot;Calculate&quot;)
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
+          textOutput(&quot;combinations&quot;)
+        )
+    )
+)
+
+# Define server logic to calculate combinations
+server &lt;- function(input, output) {
+  calc &lt;- eventReactive(input$go, {
+    
+    #User input validation
+    validate(
+      need(input$objects &gt;= 0, &quot;Did not run! Number of objects needs to be equal to or greater than zero&quot;),
+      need(input$sample &gt;= 0, &quot;Did not run! Number in sample needs to be equal to or greater than zero&quot;)
+      )
+    
+    if( #if statement when objects are greater than 0
+      input$objects &gt;0) {
+      round( #round calculation
+        exp(lfactorial(input$sample + input$objects - 1)) / #(n + r -1)!
+          (exp(lfactorial(input$sample)) * exp(lfactorial(input$objects - 1))), #r!(n-1)!
+        2)
+    }
+    else{
+      1
+    }
+    
+  })
+  output$combinations &lt;- renderText({
+    paste0(&quot;There are &quot;, calc(), &quot; possible combinations with replacements&quot;)
+  })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)</code></pre>
+<pre><code>## 
+## Listening on http://127.0.0.1:8138</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Which looks like this…
+<img src="calc-03.gif" /><!-- --></p>
+<p>Nice! You can see that the validation message is triggered when the user inputs values for the objects or samples that are &lt;0 and that our if/else statement worked when the object and sample inputs were both set to 0.</p>
+</div>
+<div id="all-done" class="section level2">
+<h2>All done!</h2>
+<p>That’s it for now! A part 2 will be published next month where we will walk through how to test this app (specifically the validation messages) using the <code>shinytest2</code> package. Stay tuned!</p>
+</div>
